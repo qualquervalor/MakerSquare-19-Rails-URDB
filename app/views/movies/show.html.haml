@@ -9,7 +9,16 @@
     #trailer
       %i.icon-youtube-play
       =link_to "Watch the trailer on YouTube", @movie.trailer_url, {target: "blank"}
-
+    #cast
+      %h2.centered Cast
+      %ul
+        - @movie.roles.each do |role|
+          %li
+            = image_tag(role.star.headshot_url)
+            %span.character
+            = role.character 
+            &ndash;
+            = role.star.name
     #showtimes
       %h2.centered Showtimes
 
@@ -20,7 +29,7 @@
         %tbody
           - @showtimes.each do |showtime|
             %tr
-              %td= showtime.location
+              %td= showtime.location 
               %td= showtime.time
 
       = form_for [@movie, @showtime] do |f|
