@@ -1,0 +1,14 @@
+#headshot
+  = image_tag(@star.headshot_url)
+#star
+  #info
+    #name
+      %h1= @star.name
+    #bio
+      %p= @star.bio
+    #movies
+      - @star.roles.each do |role|
+
+        =role.movie.title
+        &ndash;
+        =role.character

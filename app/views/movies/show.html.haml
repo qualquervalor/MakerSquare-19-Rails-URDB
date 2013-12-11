@@ -14,11 +14,10 @@
       %ul
         - @movie.roles.each do |role|
           %li
-            = image_tag(role.star.headshot_url)
-            %span.character
-            = role.character 
-            &ndash;
-            = role.star.name
+            = link_to role.star do
+              = image_tag(role.star.headshot_url)
+              %span.character= "#{role.character} -"
+              = role.star.name
     #showtimes
       %h2.centered Showtimes
 
