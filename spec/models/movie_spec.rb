@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Movie do
   let(:movie) { Movie.new }
-
+  let(:rotten_finder_return) { OpenStruct.new(ratings: OpenStruct.new(audience_score: 84)) }
   describe "#snippet" do
     context "when description is less than or equal to 50 characters" do
       it "returns the full description" do
@@ -19,47 +19,35 @@ describe Movie do
         expect(movie.snippet).to eq('When a Roman general is betrayed and his family...')
       end
     end
+    
+    context "when description is nill" do
+      it "returns an empty string" do
+        allow(movie).to receive(:description).and_return("")
+
+        expect(movie.snippet).to eq('')
+      end
+    end
+
+  end
+
+  describe "#audience_rating" do   
+    context "when Movie is found on Rotten Tomatoes" do
+      it "returns the audience score for the Movie" do
+        allow(movie).to receive(:rotten_finder).and_return(rotten_finder_return)
+
+        expect(movie.audience_rating).to eq(84)
+      end
+
+    end
+
+    context "when Movie is not found on Rotten Tomatoes" do
+      it "returns the audience score for the Movie as nil" do
+        allow(movie).to receive(:rotten_finder).and_return([])
+
+        expect(movie.audience_rating).to eq([])
+      end
+    end
   end
 end
 
 
-
-# describe Movie  do 
-#   let(:movie) { Movie.new }
-
-#   describe "#snippet" do
-#     context "when desciption is nil" do
-#       it "should return an empty string" do
-#         allow(movie).to receive(:description).and_return("")
-
-#         expect(movie.snippet).to eq("")
-#       end
-#     end
-
-#     context "when desciption is less than 50" do
-#       it "should retrun the same string" do
-#         allow(movie).to receive(:description).and_return("abc")
-
-#         expect(movie.snippet).to eq("abc")
-#       end
-#     end
-
-#     context "when desciption is more than 50" do
-#       it "should retrun the same string shorten to 50 chars" do
-#         allow(movie).to receive(:description).and_return("a"*51)
-
-#         expect(movie.snippet).to eq("a"*47+"...")
-#       end
-#     end
-
-#     context "when desciption is equal to 50" do
-#       it "should retrun the same string" do
-#         allow(movie).to receive(:description).and_return("a"*50)
-
-#         expect(movie.snippet).to eq("a"*50)
-#       end
-#       expect(movie.snippet).to eq("")
-#     end
-#   end
-  
-# end
