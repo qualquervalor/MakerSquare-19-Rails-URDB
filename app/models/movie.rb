@@ -10,4 +10,14 @@ class Movie < ActiveRecord::Base
   def snippet
     description.truncate 50
   end
+
+  def audience_rating
+    movie = rotten_finder(title)
+    if (movie.length == 0)
+      movie
+    else
+      movie.ratings.audience_score
+    end
+  end
+
 end
