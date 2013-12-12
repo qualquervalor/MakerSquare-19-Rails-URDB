@@ -4,8 +4,27 @@ class Movie < ActiveRecord::Base
   has_many :stars, through: :roles
   validates :title, presence: true
 
-  def self.average_rating
-  
+   def self.average_rating
+
+      #get all movie scores
+      movies = self.all
+
+    #add all movie scores together
+    sum =0
+    count = 0
+    movies.each do |x|
+      if !x.audience_rating.nil?
+        sum += x.audience_rating
+        count +=1
+      end  
+    end
+
+    #divide by number of movies
+    if (count ==0)
+      nil
+    else
+      sum/count  
+    end
   end
     
   def rotten_finder
