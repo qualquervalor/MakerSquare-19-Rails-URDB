@@ -1,28 +1,8 @@
-== README
-
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+MakerSquare_19 Week 5 URDB
+This is an assignment from the 5th week of MakerSquare 10 week course on web development. The project is a Rails 
+clone of IMDB, which would list movie and have detailed information available for each movie.
+Each day work would begin anew on a fresh branch to teach different concepts.
+-Generating rails migration
+-Adding model associations (has_many :through)
+-Using Haml for Views
+-Testig with RSpec
